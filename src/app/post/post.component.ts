@@ -8,7 +8,7 @@ import {Post} from "../app.component";
 })
 export class PostComponent {
 
-  @Input() post: Post
+  @Input('myPost') post: Post
 
   constructor() {
 
