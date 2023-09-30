@@ -9,4 +9,17 @@ export class AppComponent {
 
   arr = [1, 1, 2, 3, 5, 8, 13]
 
+  objs = [
+    {title: 'Post 1', author: 'Eugene', comments: [
+        {name: 'Max', text: 'lorem 1'},
+        {name: 'Max', text: 'lorem 2'},
+        {name: 'Max', text: 'lorem 2'}
+      ]},
+    {title: 'Post 2', author: 'Eugene 2', comments: [
+        {name: 'Max 2', text: 'lorem 1'},
+        {name: 'Max 2', text: 'lorem 2'},
+        {name: 'Max 2', text: 'lorem 2'}
+      ]}
+  ]
+
 }
