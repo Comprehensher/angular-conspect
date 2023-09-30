@@ -1,7 +1,7 @@
 <h1>Hello Angular World!</h1>
 
 <ul>
-  <li *ngFor="let n of arr">
-    {{n}}
+  <li *ngFor="let n of arr; let idx = index ">
+    {{idx}} <strong>{{n}}</strong>
   </li>
 </ul>
