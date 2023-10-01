@@ -11,4 +11,6 @@ export class AppComponent {
   str = 'hello world'
 
   date: Date = new Date()
+
+  float = 0.42
 }
