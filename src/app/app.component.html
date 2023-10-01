@@ -1,28 +1,4 @@
 <div class="container">
-  <h1>Angular Directives</h1>
+  <h1>Angular Pipes</h1>
 
-<!--  Pay attrention, now we use [] because we pass object not string-->
-  <p appStyle="red" [dStyles]="{border: '1px solid blue', borderRadius: '5px'}">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, optio!
-  </p>
-  <p [appStyle]="'blue'" [dStyles]="{border: '1px solid red', borderRadius: '15px'}">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, optio!
-  </p>
-
-  <button class="btn" (click) = "isVisible = !isVisible">Toggle</button>
-
-<!--  <div *ngIf="isVisible" class="wrap">-->
-<!--    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci atque autem consequuntur culpa cumque debitis ex fugit harum numquam, tempore.</p>-->
-<!--  </div>-->
-
-<!--  it's equivivalent of commented code above-->
-<!--  <ng-template [ngIf]="isVisible">-->
-<!--    <div class="wrap">-->
-<!--      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores quae quidem quisquam quo quod reiciendis reprehenderit soluta, voluptate! Officia!</p>-->
-<!--    </div>-->
-<!--  </ng-template>-->
-
-  <div class="wrap" *appIfnot="isVisible">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores quae quidem quisquam quo quod reiciendis reprehenderit soluta, voluptate! Officia!</p>
-  </div>
 </div>
