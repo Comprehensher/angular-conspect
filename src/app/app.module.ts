@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import {FormsModule} from "@angular/forms";
+import {StyleDirective} from "./directives/style.directive";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StyleDirective
   ],
   imports: [
     BrowserModule,
@@ -16,5 +18,5 @@ import {FormsModule} from "@angular/forms";
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  
+
 }
