@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import {FormsModule} from "@angular/forms";
+import {MultByPipe} from "./pipes/mult-by.pipe";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MultByPipe
   ],
   imports: [
     BrowserModule,

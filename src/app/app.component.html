@@ -1,37 +1,16 @@
 <div class="container">
   <h1>Angular Pipes</h1>
 
-  <p>
-  <!--Output: 0.42-->
-    {{float}}
-  </p>
-  <p>
-    <!--Output: $0.42-->
-    {{float | currency}}
-  </p>
-  <p>
-    <!--Output: 42%-->
-    {{float | percent}}
-  </p>
-  <p>
-    <!--Output: 042.0%%-->
-    {{float | percent:'3.1-2'}}
-  </p>
-
-  <!--Output: [object Object] -->
-  <pre>{{obj}}</pre>
-
-  <!--Output: {
-  "a": 1,
-  "b": {
-    "c": 2,
-    "d": {
-      "e": 3,
-      "f": 4
-    }
-  }
-} -->
-  <pre>{{obj | json }}</pre>
-
-<!--  See more formats for pipes at site: https://angular.io/api filter by pipe-->
+  <!--Output:20-->
+  <p>{{10 | mult}}</p>
+  <!--Output:20-->
+  <p>{{10 | mult:2}}</p>
+  <!--Output:30-->
+  <p>{{10 | mult:3}}</p>
+  <!--Output:50-->
+  <p>{{10 | mult:5}}
+    <!--Output:80-->
+  <p>{{10 | mult:8}}</p>
+  <!--Output:130-->
+  <p>{{10 | mult:13}}</p>
 </div>
