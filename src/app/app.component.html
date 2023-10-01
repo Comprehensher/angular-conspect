@@ -16,9 +16,13 @@
 <!--  </div>-->
 
 <!--  it's equivivalent of commented code above-->
-  <ng-template [ngIf]="isVisible">
-    <div class="wrap">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores quae quidem quisquam quo quod reiciendis reprehenderit soluta, voluptate! Officia!</p>
-    </div>
-  </ng-template>
+<!--  <ng-template [ngIf]="isVisible">-->
+<!--    <div class="wrap">-->
+<!--      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores quae quidem quisquam quo quod reiciendis reprehenderit soluta, voluptate! Officia!</p>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+
+  <div class="wrap" *appIfnot="isVisible">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dolores quae quidem quisquam quo quod reiciendis reprehenderit soluta, voluptate! Officia!</p>
+  </div>
 </div>
