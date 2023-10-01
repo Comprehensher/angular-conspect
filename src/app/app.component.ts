@@ -21,4 +21,12 @@ export class AppComponent {
     this.posts.unshift(post)
     // console.log('Post', post)
   }
+
+  removePost(id: number) {
+    console.log('Id to remove', id)
+    // для удаления из массива
+    // на каждой иттерации мы будем получать объект p, и даллее если p.id не совпадает с переданным id мы его исключаем
+    // из результирующего массива posts
+    this.posts = this.posts.filter(p => p.id !== id)
+  }
 }
