@@ -1,8 +1,10 @@
 <div>
+  <!-- adding reference to this html element using symbol # -->
   <input type="text"
          class="form-control"
          placeholder="Title..."
          [(ngModel)]="title"
+         #titleInput
   >
   <input type="text"
          class="form-control"
@@ -11,4 +13,5 @@
   >
 
   <button class="btn" (click) = "addPost()">Добавить пост</button>
+  <button class="btn" (click)="focusTitle()">Focus Title</button>
 </div>

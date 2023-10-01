@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
 import {Post} from "../app.component";
 
 @Component({
@@ -9,6 +9,8 @@ import {Post} from "../app.component";
 export class PostFormComponent {
 
   @Output() onAdd: EventEmitter<Post> = new EventEmitter<Post>()
+  // именно здсь мы в переменной получаем наш html-element
+  @ViewChild('titleInput', {static: false}) inputRef: ElementRef
 
   title = ''
   text = ''
@@ -24,6 +26,10 @@ export class PostFormComponent {
 
       this.title = this.text = ''
     }
+  }
+
+  focusTitle() {
+    this.inputRef.nativeElement.focus()
   }
 
 }
