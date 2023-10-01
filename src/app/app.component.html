@@ -18,5 +18,20 @@
     {{float | percent:'3.1-2'}}
   </p>
 
+  <!--Output: [object Object] -->
+  <pre>{{obj}}</pre>
+
+  <!--Output: {
+  "a": 1,
+  "b": {
+    "c": 2,
+    "d": {
+      "e": 3,
+      "f": 4
+    }
+  }
+} -->
+  <pre>{{obj | json }}</pre>
+
 <!--  See more formats for pipes at site: https://angular.io/api filter by pipe-->
 </div>
