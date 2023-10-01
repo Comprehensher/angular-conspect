@@ -2,36 +2,29 @@
   <h1>Angular Pipes</h1>
 
   <p>
-<!--    Output: HELLO WORLD-->
-    {{str | uppercase}}
+<!--    Output: Sun Oct 01 2023 19:39:45 GMT+0300 (Москва, стандартное время)-->
+    {{date}}
   </p>
 
   <p>
-    <!--    Output: hello world-->
-    {{str | uppercase | lowercase}}
+    <!--    Output: Oct 1, 2023-->
+    {{date | date}}
   </p>
 
   <p>
-    <!--    Output: Hello World-->
-    {{str | uppercase | lowercase | titlecase}}
+    <!--    Output: Sunday, October 1, 2023-->
+    {{date | date:'fullDate'}}
   </p>
 
   <p>
-    <!-- Обрезаем строку
-        Output: ello World-->
-    {{str | slice:1 }}
+    <!--    Output: October 1, 2023-->
+    {{date | date:'longDate'}}
   </p>
 
   <p>
-    <!-- Обрезаем строку
-        Output: ello -->
-    {{str | slice:1:5 }}
+    <!--    Output: October 01 2023, 19:49:50 -->
+    {{date | date:'MMMM dd yyyy, HH:mm:ss'}}
   </p>
 
-  <p>
-    <!-- Обрезаем строку
-        Output: ello wor -->
-    {{str | slice:1:-2 }}
-  </p>
-
+<!--  See more formats for pipes at site: https://angular.io/api filter by pipe-->
 </div>
