@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {Post} from "../app.component";
 
 @Component({
@@ -7,6 +7,8 @@ import {Post} from "../app.component";
   styleUrls: ['./post-form.component.scss']
 })
 export class PostFormComponent {
+
+  @Output() onAdd: EventEmitter<Post> = new EventEmitter<Post>()
 
   title = ''
   text = ''
@@ -17,8 +19,8 @@ export class PostFormComponent {
         title: this.title,
         text: this.text
       }
-
-      console.log('New Post: ', post)
+      // вызываем тогда когда хотим отправить какие-то данные наружу
+      this.onAdd.emit(post)
 
       this.title = this.text = ''
     }

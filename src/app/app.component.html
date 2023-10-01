@@ -1,10 +1,15 @@
 <div class="container">
   <h1>Angular Components</h1>
 
-  <app-post-form></app-post-form>
+  <!--  Если хотим получить из другой компоненты используем []
+  и для того чтобы передать некоторые объекты в метод мы используем ключевое слово event-->
+  <app-post-form
+    (onAdd)="updatePosts($event)"
+  ></app-post-form>
 
   <hr />
 
+<!--  Если хотим передать во внутрь другой компоненты используем []-->
   <app-post
     *ngFor="let p of posts"
     [myPost]="p"

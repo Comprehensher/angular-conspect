@@ -15,4 +15,10 @@ export class AppComponent {
     {title: 'Хочу выучить Angular компоненты', text: 'Я все еще учу компоненты', id: 1},
     {title: 'Следующий блок', text: 'Будет про директивы и еще про пайпы', id: 2}
   ]
+
+  updatePosts(post: Post) {
+    // добавляем в  массив как первый элемент, в начало списка
+    this.posts.unshift(post)
+    // console.log('Post', post)
+  }
 }
