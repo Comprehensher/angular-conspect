@@ -1,11 +1,14 @@
 <div class="container">
   <h1>Angular Pipes</h1>
 
+  <button class="btn" (click)="searchField='title'">Title</button>
+  <button class="btn" (click)="searchField='text'">Text</button>
+
   <input type="text" [(ngModel)]="search">
 
 <!--  На каждой итерации выводим div-->
   <div
-    *ngFor="let post of posts | filter:search"
+    *ngFor="let post of posts | filter:search:searchField"
     class="card">
       <h2>{{post.title}}</h2>
       <p>{{post.text}}</p>

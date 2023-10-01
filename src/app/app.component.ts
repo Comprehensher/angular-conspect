@@ -13,6 +13,7 @@ export interface Post {
 export class AppComponent {
 
   search = ''
+  searchField = 'title'
 
   posts: Post[] = [
     {title: 'Beer', text: 'Самое лучшее пиво в мире'},

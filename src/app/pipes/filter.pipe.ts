@@ -6,12 +6,12 @@ import {Post} from "../app.component";
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(posts: Post[], search: string = ''): Post[] {
+  transform(posts: Post[], search: string = '', field: string='title'): Post[] {
     if (!search.trim()) {
       return posts
     }
     return posts.filter(post => {
-      return post.title.toLowerCase().includes(search.toLowerCase())
+      return post[field].toLowerCase().includes(search.toLowerCase())
     })
   }
 
