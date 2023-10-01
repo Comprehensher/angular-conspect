@@ -2,15 +2,36 @@
   <h1>Angular Pipes</h1>
 
   <p>
-<!--Первый параметр в pipe number показывает сколько цифр нужно показывать до запятой
-    после точки указываем диапазон значений цифр, которые нам нужно показать после запятой
-    в нашем примере экспонента будет 2.71828
--->
-    {{e | number:'1.1-5'}}
-<!--    Output: 002.72-->
-    {{e | number:'3.1-2'}}
-    <!--    Output: 3-->
-    {{e | number:'1.0-0'}}
+<!--    Output: HELLO WORLD-->
+    {{str | uppercase}}
+  </p>
+
+  <p>
+    <!--    Output: hello world-->
+    {{str | uppercase | lowercase}}
+  </p>
+
+  <p>
+    <!--    Output: Hello World-->
+    {{str | uppercase | lowercase | titlecase}}
+  </p>
+
+  <p>
+    <!-- Обрезаем строку
+        Output: ello World-->
+    {{str | slice:1 }}
+  </p>
+
+  <p>
+    <!-- Обрезаем строку
+        Output: ello -->
+    {{str | slice:1:5 }}
+  </p>
+
+  <p>
+    <!-- Обрезаем строку
+        Output: ello wor -->
+    {{str | slice:1:-2 }}
   </p>
 
 </div>
