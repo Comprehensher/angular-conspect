@@ -22,5 +22,4 @@ import { FilterPipe } from './pipes/filter.pipe';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-
 }
