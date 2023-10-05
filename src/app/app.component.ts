@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AppCounterService} from "./Services/app-counter.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,6 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
 
+  constructor(public appCounterService: AppCounterService) {
+  }
 }
