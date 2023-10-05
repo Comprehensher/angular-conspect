@@ -12,19 +12,4 @@ export interface Post {
 })
 export class AppComponent {
 
-  search = ''
-  searchField = 'title'
-
-  posts: Post[] = [
-    {title: 'Beer', text: 'Самое лучшее пиво в мире'},
-    {title: 'Bread', text: 'The best bread in the world'},
-    {title: 'Javascript', text: 'The best language in the world'}
-  ]
-
-  addPost() {
-    this.posts.unshift({
-      title: 'Angular 8',
-      text: 'Vladilen Angular 8 course'
-    })
-  }
 }
