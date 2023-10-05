@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Observable} from "rxjs";
 
 export interface Post {
   title: string
@@ -11,5 +12,15 @@ export interface Post {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+    p: Promise<string> = new Promise<string>(resolve => {
+      setTimeout(() => {
+        resolve('Promise Resolved')
+      }, 4000)
+    })
 
+  date: Observable<Date> = new Observable<Date>(obs => {
+    setInterval(() => {
+      obs.next(new Date())
+    }, 1000)
+  })
 }
