@@ -1,12 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {delay} from "rxjs";
-
-export interface Todo {
-  completed: boolean
-  title: string
-  id?: number
-}
+import {Todo, TodosService} from "./todos.service";
 
 @Component({
   selector: 'app-root',
@@ -20,8 +15,7 @@ export class AppComponent implements OnInit {
   loading = false
 
   todoTitle = ''
-  constructor(private http: HttpClient) {
-  }
+  constructor(private todosService: TodosService) {}
   ngOnInit(): void {
     this.fetchTodos()
   }
@@ -31,26 +25,21 @@ export class AppComponent implements OnInit {
       return
     }
 
-    const newTodo: Todo = {
+    // передаем в addTodo объект Todo
+    this.todosService.addTodo({
       title: this.todoTitle,
       completed: false
-    }
-
-    // Указываем с каким типом данных работает post в нашем случае Todo
-    this.http.post<Todo>('https://jsonplaceholder.typicode.com/todos', newTodo)
-      .subscribe(todo => {
-        console.log('todo', todo)
-        this.todos.push(todo)
-        this.todoTitle=''
-      })
+    }).subscribe(todo => {
+      console.log('todo', todo)
+      this.todos.push(todo)
+      this.todoTitle=''
+    })
   }
 
   fetchTodos() {
     // когда начинаем грузить какие-то данные, говорим, что loading находится в значении true
     this.loading = true
-    this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos?_limit=2')
-      // pipe просто для иммитирования долгой загрузки
-      .pipe(delay(1500))
+    this.todosService.fetchTodods()
       .subscribe(todos => {
         this.todos = todos
         // после того как загрузили эти данные будем говорить что this.loading = false
@@ -59,8 +48,7 @@ export class AppComponent implements OnInit {
   }
 
   removeTodo(id: number) {
-    // В конце указываем id элемента, который необходимо удалить
-    this.http.delete<void>(`https://jsonplaceholder.typicode.com/todos/${id}`)
+    this.todosService.removeTodo(id)
       .subscribe(() => {
         // удаляем элемент из нашего массива на front-end-е
         this.todos = this.todos.filter(t => t.id !== id)
