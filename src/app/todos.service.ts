@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, delay, Observable, throwError} from "rxjs";
 
 export interface Todo {
@@ -14,11 +14,17 @@ export class TodosService {
 
   addTodo(todo: Todo): Observable<Todo> {
     // Указываем с каким типом данных работает post в нашем случае Todo
-    return this.http.post<Todo>('https://jsonplaceholder.typicode.com/todos', todo)
+    // В третий параметр мы можем передавать различные опции в том числе и header
+    return this.http.post<Todo>('https://jsonplaceholder.typicode.com/todos', todo, {
+      headers: new HttpHeaders({
+        // создадим в header-e случайное число, и можно посмотреть в dev tools - network - request headers
+        'MyCustomHeader': Math.random().toString()
+      })
+    })
   }
 
   fetchTodods(): Observable<Todo[]> {
-    return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todosа?_limit=2')
+    return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos?_limit=2')
       // pipe просто для иммитирования долгой загрузки
       // ловим ошибку в pipe если они есть
       // и возвращаем Observable в котором обернута ошибка
