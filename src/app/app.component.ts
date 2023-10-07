@@ -57,4 +57,13 @@ export class AppComponent implements OnInit {
         this.loading = false
       })
   }
+
+  removeTodo(id: number) {
+    // В конце указываем id элемента, который необходимо удалить
+    this.http.delete<void>(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .subscribe(() => {
+        // удаляем элемент из нашего массива на front-end-е
+        this.todos = this.todos.filter(t => t.id !== id)
+      })
+  }
 }

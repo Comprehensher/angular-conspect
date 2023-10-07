@@ -13,22 +13,30 @@
 
   <!-- Если не loading, то тогда показываем данный блок а иначе показываем loadingBlock  -->
   <div *ngIf="!loading else loadingBlock">
-    <!-- Иттерируем в карточек из полученных response объектов - массива todos  -->
-    <div class="card" *ngFor="let todo of todos">
-      <p>
-        <!-- класс completed будет добавляьбся только в том случае если поле объекта todo будет в true
-        ; todo.completed =true -->
-        <span [class.completed]="todo.completed">{{todo.title | titlecase}}</span>
-        <span>
-          <button class="btn btn-danger">Удалить</button>
-          <!-- Если todo завершен, тогда кнопку Завершить блокируем       -->
-          <button class="btn" [disabled]="todo.completed">Завершить</button>
-        </span>
-      </p>
+    <!-- Показываем список если в todos что-то есть   -->
+    <div *ngIf="todos.length; else noTodos">
+      <!-- Иттерируем в карточек из полученных response объектов - массива todos  -->
+      <div class="card" *ngFor="let todo of todos">
+        <p>
+          <!-- класс completed будет добавляьбся только в том случае если поле объекта todo будет в true
+          ; todo.completed =true -->
+          <span [class.completed]="todo.completed">{{todo.title | titlecase}}</span>
+          <span>
+            <button class="btn btn-danger" (click)="removeTodo(todo.id)">Удалить</button>
+            <!-- Если todo завершен, тогда кнопку Завершить блокируем       -->
+            <button class="btn" [disabled]="todo.completed">Завершить</button>
+          </span>
+        </p>
+      </div>
     </div>
+    <ng-template #noTodos>
+      <p>Нет элементов</p>
+    </ng-template>
   </div>
 
-  <ng-template #loadingBlock>
-    <p>Loading...</p>
-  </ng-template>
+    <ng-template #loadingBlock>
+      <p>Loading...</p>
+    </ng-template>
+
+
 </div>
