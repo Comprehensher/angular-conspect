@@ -24,10 +24,14 @@ export class TodosService {
   }
   // А здесь в опциях мы укаазываем url квери параметры в ключ params:
   fetchTodods(): Observable<Todo[]> {
+    let params = new HttpParams()
+    // данная конструкция возвращает новый объект params
+    params = params.append('_limit', '4')
+    // params будет создержать предыдущее и следующее значение
+    params = params.append('custom', 'anything')
+
     return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos', {
-      // первый параметр - название квери параметра
-      // второй параметр - в строковом формате мы передаем какое-то значение
-      params: new HttpParams().set('_limit', '3')
+      params
     })
       // pipe просто для иммитирования долгой загрузки
       // ловим ошибку в pipe если они есть
