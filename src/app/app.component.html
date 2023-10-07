@@ -11,12 +11,16 @@
 
   <hr>
 
-  <div class="card">
+  <!-- Иттерируем в карточек из полученных response объектов - массива todos  -->
+  <div class="card" *ngFor="let todo of todos">
     <p>
-      <span class="completed">Название</span>
+      <!-- класс completed будет добавляьбся только в том случае если поле объекта todo будет в true
+      ; todo.completed =true -->
+      <span [class.completed]="todo.completed">{{todo.title | titlecase}}</span>
       <span>
         <button class="btn btn-danger">Удалить</button>
-        <button class="btn">Завершить</button>
+        <!-- Если todo завершен, тогда кнопку Завершить блокируем       -->
+        <button class="btn" [disabled]="todo.completed">Завершить</button>
       </span>
     </p>
   </div>
