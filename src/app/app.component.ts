@@ -54,4 +54,11 @@ export class AppComponent implements OnInit {
         this.todos = this.todos.filter(t => t.id !== id)
       })
   }
+
+  completeTodo(id: number) {
+    // получается что subscribe выполняет поток, а в сервесе мы его инициализируем
+    this.todosService.completeTodo(id).subscribe(todo => {
+      this.todos.find(t=> t.id === todo.id).completed = true
+    })
+  }
 }

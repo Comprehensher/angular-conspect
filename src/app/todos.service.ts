@@ -27,4 +27,11 @@ export class TodosService {
     // В конце указываем id элемента, который необходимо удалить
     return this.http.delete<void>(`https://jsonplaceholder.typicode.com/todos/${id}`)
   }
+
+  completeTodo(id: number): Observable<Todo> {
+    // в body указываем те поля которые хотим модифицировать
+    return this.http.put<Todo>(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+      completed: true
+    })
+  }
 }
