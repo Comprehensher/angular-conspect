@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {catchError, delay, Observable, throwError} from "rxjs";
 
 export interface Todo {
@@ -22,9 +22,13 @@ export class TodosService {
       headers
     })
   }
-
+  // А здесь в опциях мы укаазываем url квери параметры в ключ params:
   fetchTodods(): Observable<Todo[]> {
-    return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos?_limit=2')
+    return this.http.get<Todo[]>('https://jsonplaceholder.typicode.com/todos', {
+      // первый параметр - название квери параметра
+      // второй параметр - в строковом формате мы передаем какое-то значение
+      params: new HttpParams().set('_limit', '3')
+    })
       // pipe просто для иммитирования долгой загрузки
       // ловим ошибку в pipe если они есть
       // и возвращаем Observable в котором обернута ошибка
