@@ -15,6 +15,8 @@ export class AppComponent implements OnInit {
   loading = false
 
   todoTitle = ''
+
+  error = ''
   constructor(private todosService: TodosService) {}
   ngOnInit(): void {
     this.fetchTodos()
@@ -39,11 +41,17 @@ export class AppComponent implements OnInit {
   fetchTodos() {
     // когда начинаем грузить какие-то данные, говорим, что loading находится в значении true
     this.loading = true
+    // Метод subdcribe иммеет параметры-кол-беки
+    // первый callback - вызывается тогда когда у нас все хорошо и у нас приходят какие-то данные и здесь можно реализовывать свои действия
+    // второй callback - error - принимает в себя ошибку если таковая есть
+    // третий callbavl - с пустыми параметрами ()=>{} вызывается тогда когда стрим заврешил свое выполнение
     this.todosService.fetchTodods()
       .subscribe(todos => {
         this.todos = todos
         // после того как загрузили эти данные будем говорить что this.loading = false
         this.loading = false
+      }, error => {
+        this.error = error.message
       })
   }
 
