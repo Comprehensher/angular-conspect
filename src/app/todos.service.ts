@@ -13,13 +13,13 @@ export class TodosService {
   constructor(private http: HttpClient) {}
 
   addTodo(todo: Todo): Observable<Todo> {
+    const headers = new HttpHeaders( {
+      'MyCustomHeader': Math.random().toString()
+    })
     // Указываем с каким типом данных работает post в нашем случае Todo
     // В третий параметр мы можем передавать различные опции в том числе и header
     return this.http.post<Todo>('https://jsonplaceholder.typicode.com/todos', todo, {
-      headers: new HttpHeaders({
-        // создадим в header-e случайное число, и можно посмотреть в dev tools - network - request headers
-        'MyCustomHeader': Math.random().toString()
-      })
+      headers
     })
   }
 
