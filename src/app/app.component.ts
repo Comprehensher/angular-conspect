@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
         Validators.email,
         Validators.required,
         MyValidators.restrictedEmails
-      ]),
+      ], [MyValidators.uniqEmail]), // ассинхронные валидаторы добавдялются в третий параметр
       password: new FormControl(null, [
         Validators.required,
         Validators.minLength(6)
