@@ -1,13 +1,16 @@
 <nav class="navbar">
   <h1>
-    <a href="#">Angular Routing</a>
+    <a [routerLink]="['/']">Angular Routing</a>
   </h1>
   <ul>
     <li class="active">
-      <a href="#">Home</a>
+      <a [routerLink]="['/']">Home</a>
     </li>
-    <li><a href="#">Posts</a></li>
-    <li><a href="#">About</a></li>
+    <!-- Сделать так чтобы наши страницы не перезагружались а перерисовывались автоматически - routerLink   -->
+    <li><a routerLink="/posts">Posts</a></li>
+    <!-- Так как routerLink-директва, то мы можем баиндить ее, передаем парметры указывая массив - массив содержит
+       элементы, которые составят тот путь по которому необходимо перейти-->
+    <li><a [routerLink]="['/about']">About</a></li>
     <li><button class="btn">Login</button></li>
     <li><button class="btn">Logout</button></li>
   </ul>
