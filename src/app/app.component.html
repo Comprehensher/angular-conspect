@@ -1,46 +1,23 @@
+<nav class="navbar">
+  <h1>
+    <a href="#">Angular Routing</a>
+  </h1>
+  <ul>
+    <li class="active">
+      <a href="#">Home</a>
+    </li>
+    <li><a href="#">Posts</a></li>
+    <li><a href="#">About</a></li>
+    <li><button class="btn">Login</button></li>
+    <li><button class="btn">Logout</button></li>
+  </ul>
+</nav>
+
 <div class="container">
-  <h1>Angular HttpClient</h1>
-
   <div class="card">
-    <div class="form-control">
-      <input type="text" placeholder="Название" [(ngModel)]="todoTitle">
-    </div>
-    <button class="btn" (click)="addTodo()">Добавить</button>
-    <button class="btn" (click)="fetchTodos()">Загрузить</button>
+    <app-home></app-home>
   </div>
-
-  <hr>
-
-  <p *ngIf="error; else todosBlock" class="error">{{error}}</p>
-
-  <ng-template #todosBlock>
-    <!-- Если не loading, то тогда показываем данный блок а иначе показываем loadingBlock  -->
-    <div *ngIf="!loading else loadingBlock">
-      <!-- Показываем список если в todos что-то есть   -->
-      <div *ngIf="todos.length; else noTodos">
-        <!-- Иттерируем в карточек из полученных response объектов - массива todos  -->
-        <div class="card" *ngFor="let todo of todos">
-          <p>
-            <!-- класс completed будет добавляьбся только в том случае если поле объекта todo будет в true
-            ; todo.completed =true -->
-            <span [class.completed]="todo.completed">{{todo.title | titlecase}}</span>
-            <span>
-              <button class="btn btn-danger" (click)="removeTodo(todo.id)">Удалить</button>
-              <!-- Если todo завершен, тогда кнопку Завершить блокируем       -->
-              <button class="btn" [disabled]="todo.completed" (click)="completeTodo(todo.id)">Завершить</button>
-            </span>
-          </p>
-        </div>
-      </div>
-      <ng-template #noTodos>
-        <p>Нет элементов</p>
-      </ng-template>
-    </div>
-
-      <ng-template #loadingBlock>
-        <p>Loading...</p>
-      </ng-template>
-  </ng-template>
-
-
 </div>
+
+
+
