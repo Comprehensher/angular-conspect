@@ -6,6 +6,7 @@ import {PostsComponent} from "./posts/posts.component";
 import {PostComponent} from "./post/post.component";
 import {AboutExtraComponent} from "./about-extra/about-extra.component";
 import {ErrorPageComponent} from "./error-page/error-page.component";
+import {AuthGuard} from "./auth.guard";
 
 // http://localhost:4200/ - по такому пути нам необходимо зарегистировать HomeComponent
 // http://localhost:4200/about - по такому пути нам необходимо зарегистировать AboutComponent
@@ -20,7 +21,9 @@ const routes: Routes = [
       // у children точно также объявляется router
       {path: 'extra', component: AboutExtraComponent}
     ]},
-  {path: 'posts', component: PostsComponent},
+  // мы хотим защитить страницу Posts, поэтому добавляем параметр canActivate, где передаем массив
+  // quard-ов, которые мы применям для текущей страницы
+  {path: 'posts', component: PostsComponent, canActivate:[AuthGuard]},
   // говорим, что наше приложение будет еще обрабатывать какую-то динамику
   // после /  будет добавляться какое-то число, которое будет постоянно разным - :id
   {path: 'posts/:id', component: PostComponent},
