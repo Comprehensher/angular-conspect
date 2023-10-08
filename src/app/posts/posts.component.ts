@@ -21,13 +21,19 @@ export class PostsComponent implements OnInit{
       // !! - так мы конвертируем строку в bolean значение, сначала инверсия, а потом мы приводим его к соотв резултату
       this.showIds = !!params['showIds']
     })
+    // to look for change of fragment parameter
+    this.route.fragment.subscribe(fragment => {
+      // увидим какой текущий фрагмент мы используем
+      console.log('Fragment', fragment)
+    })
   }
 
   showIdsProgram() {
     this.router.navigate(['/posts'], {
       queryParams: {
         showIds: true
-      }
+      },
+      fragment: 'program-fragment'
     })
   }
 }
