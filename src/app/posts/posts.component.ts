@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core'
 import {PostsService} from '../posts.service'
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-posts',
@@ -11,7 +11,8 @@ export class PostsComponent implements OnInit{
   showIds = false
   constructor(
     public postsService: PostsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -19,6 +20,14 @@ export class PostsComponent implements OnInit{
     this.route.queryParams.subscribe((params: Params) => {
       // !! - так мы конвертируем строку в bolean значение, сначала инверсия, а потом мы приводим его к соотв резултату
       this.showIds = !!params['showIds']
+    })
+  }
+
+  showIdsProgram() {
+    this.router.navigate(['/posts'], {
+      queryParams: {
+        showIds: true
+      }
     })
   }
 }
