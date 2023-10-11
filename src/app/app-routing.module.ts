@@ -17,7 +17,7 @@ const routes: Routes = [
   // второй параметр - на этот роут мы хотим чтобы открывался компонент HomeComponent
   {path: '', component: HomeComponent},
   // укажем у страницы About вложенный route
-  {path: 'about', component: AboutComponent, children: [
+  {path: 'about', component: AboutComponent, canActivateChild: [AuthGuard], children: [
       // у children точно также объявляется router
       {path: 'extra', component: AboutExtraComponent}
     ]},
