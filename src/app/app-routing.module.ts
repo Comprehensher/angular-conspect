@@ -7,6 +7,7 @@ import {PostComponent} from "./post/post.component";
 import {AboutExtraComponent} from "./about-extra/about-extra.component";
 import {ErrorPageComponent} from "./error-page/error-page.component";
 import {AuthGuard} from "./auth.guard";
+import {PostResolver} from "./post.resolver";
 
 // http://localhost:4200/ - по такому пути нам необходимо зарегистировать HomeComponent
 // http://localhost:4200/about - по такому пути нам необходимо зарегистировать AboutComponent
@@ -26,7 +27,15 @@ const routes: Routes = [
   {path: 'posts', component: PostsComponent, canActivate:[AuthGuard]},
   // говорим, что наше приложение будет еще обрабатывать какую-то динамику
   // после /  будет добавляться какое-то число, которое будет постоянно разным - :id
-  {path: 'posts/:id', component: PostComponent},
+  {
+    path: 'posts/:id',
+    component: PostComponent,
+    resolve: {
+      // придумываем название для того объекта, где у нас будут храниться данные - post
+      // и теперь когда мы будем заходить по пути 'posts/:id', у нас будет автоматически отрабатывать PostResolver
+      post: PostResolver
+    }
+  },
   // регистрируем page страницу как обычный route
   {path: 'error', component: ErrorPageComponent},
   // чтобы обрабатывались ошибка, данный роут мы должны прописывать всегда последним
