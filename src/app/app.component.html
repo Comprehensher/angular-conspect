@@ -1,28 +1,17 @@
 <nav class="navbar">
-  <h1>
-    <a [routerLink]="['/']">Angular Routing</a>
-  </h1>
+  <h1>Angular Modules</h1>
+
   <ul>
-    <!-- routerLinkActiveOptions - говорим что нужно вкладку делать активной толь по полному совпадению пути
-         Т.е. Home - будет активно когда набрали просто /, а не /somepath -->
-    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-      <a [routerLink]="['/']">Home</a>
-    </li>
-    <!-- Сделать так чтобы наши страницы не перезагружались а перерисовывались автоматически - routerLink   -->
-    <!--  routerLinkActive делает так чтобы вкалдка на ту строницу куда мы перешли была активной (нажатой)  -->
-    <li routerLinkActive="active"><a routerLink="/posts">Posts</a></li>
-    <!-- Так как routerLink-директва, то мы можем баиндить ее, передаем парметры указывая массив - массив содержит
-       элементы, которые составят тот путь по которому необходимо перейти-->
-    <li routerLinkActive="active"><a [routerLink]="['/about']">About</a></li>
-    <li><button class="btn" (click)="auth.login()">Login</button></li>
-    <li><button class="btn" (click)="auth.logout()">Logout</button></li>
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/">Home</a></li>
+    <li routerLinkActive="active"><a routerLink="/about">About</a></li>
   </ul>
 </nav>
 
 <div class="container">
   <div class="card">
-    <!--  Для того чтобы укказать куда-необходимо рендерить ту или иную страницу  -->
+
     <router-outlet></router-outlet>
+
   </div>
 </div>
 

@@ -1,49 +1,16 @@
-import {NgModule} from "@angular/core";
-import {RouterModule, Routes} from "@angular/router";
-import {HomeComponent} from "./home/home.component";
-import {AboutComponent} from "./about/about.component";
-import {PostsComponent} from "./posts/posts.component";
-import {PostComponent} from "./post/post.component";
-import {AboutExtraComponent} from "./about-extra/about-extra.component";
-import {ErrorPageComponent} from "./error-page/error-page.component";
-import {AuthGuard} from "./auth.guard";
-import {PostResolver} from "./post.resolver";
+import {NgModule} from '@angular/core'
+import {RouterModule} from '@angular/router'
+import {HomePageComponent} from './home-page/home-page.component'
+import {AboutPageComponent} from './about-page/about-page.component'
+import {AboutExtraPageComponent} from './about-page/about-extra-page/about-extra-page.component'
 
-// http://localhost:4200/ - по такому пути нам необходимо зарегистировать HomeComponent
-// http://localhost:4200/about - по такому пути нам необходимо зарегистировать AboutComponent
-// http://localhost:4200/posts - по такому пути нам необходимо зарегистировать PostsComponent
-// http://localhost:4200/about/extra - по такому пути нам необходимо зарегистировать AboutExtraComponent
-const routes: Routes = [
-  // в path указываем путь, который будет зарегистрирован для определенной страницы
-  // второй параметр - на этот роут мы хотим чтобы открывался компонент HomeComponent
-  {path: '', component: HomeComponent},
-  // укажем у страницы About вложенный route
-  {path: 'about', component: AboutComponent, canActivateChild: [AuthGuard], children: [
-      // у children точно также объявляется router
-      {path: 'extra', component: AboutExtraComponent}
-    ]},
-  // мы хотим защитить страницу Posts, поэтому добавляем параметр canActivate, где передаем массив
-  // quard-ов, которые мы применям для текущей страницы
-  {path: 'posts', component: PostsComponent, canActivate:[AuthGuard]},
-  // говорим, что наше приложение будет еще обрабатывать какую-то динамику
-  // после /  будет добавляться какое-то число, которое будет постоянно разным - :id
-  {
-    path: 'posts/:id',
-    component: PostComponent,
-    resolve: {
-      // придумываем название для того объекта, где у нас будут храниться данные - post
-      // и теперь когда мы будем заходить по пути 'posts/:id', у нас будет автоматически отрабатывать PostResolver
-      post: PostResolver
-    }
-  },
-  // регистрируем page страницу как обычный route
-  {path: 'error', component: ErrorPageComponent},
-  // чтобы обрабатывались ошибка, данный роут мы должны прописывать всегда последним
-  // ** - значит что мы не нашли не один роут по такой url и нам нужно сделать redirect на нужную страницу
-  {path: '**', redirectTo: '/error'}
-]
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot([
+    {path: 'about', component: AboutPageComponent, children: [
+      {path: 'extra', component: AboutExtraPageComponent}
+    ]},
+    {path: '', component: HomePageComponent, pathMatch: 'full'}
+  ])],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
