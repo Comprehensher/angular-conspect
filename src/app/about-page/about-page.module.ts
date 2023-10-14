@@ -19,7 +19,8 @@ import {RouterModule} from "@angular/router";
     // вызываем forChild
     RouterModule.forChild([
       {
-        path: 'about', component: AboutPageComponent, children: [
+        // we already have prefix about in app-routing.module
+        path: '', component: AboutPageComponent, children: [
           {path: 'extra', component: AboutExtraPageComponent}
         ]
       }
