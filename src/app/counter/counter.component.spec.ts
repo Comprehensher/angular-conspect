@@ -1,11 +1,12 @@
 import {CounterComponent} from "./counter.component";
+import {FormBuilder} from "@angular/forms";
 
 describe('CounterComponent', () => {
   let component: CounterComponent
 
   // будет вызываться перед каждым тестом
   beforeEach(() => {
-    component = new CounterComponent()
+    component = new CounterComponent(new FormBuilder())
   })
 
   // есть также вспомогательные методы beforeAll - будет вызван перед всеми it-ми
@@ -34,6 +35,22 @@ describe('CounterComponent', () => {
     component.increment()
 
     expect(result).toBe(1)
+  })
+
+  // протестируем, а были ли вообще созданы контролы
+  it('should create form with 2 controls', () => {
+    expect(component.form.contains('login')).toBe(true)
+    // тоже самое что и toBe(true)
+    expect(component.form.contains('email')).toBeTruthy()
+  })
+
+  //  проверим работает ли валидация
+  it('should mark login as invalid if empty value', () => {
+    const control = component.form.get('login')
+
+    control.setValue('')
+
+    expect(control.valid).toBeFalsy()
   })
 
 })
