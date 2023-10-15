@@ -4,13 +4,14 @@ import {NgModule} from '@angular/core'
 import {AppComponent} from './app.component'
 import {FormsModule} from '@angular/forms';
 import { ModalComponent } from './modal/modal.component'
+import {RefDirective} from "./ref.directive";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ModalComponent
-
+    ModalComponent,
+    RefDirective
   ],
   imports: [
     BrowserModule,
