@@ -1,6 +1,7 @@
 import {Component, ComponentFactoryResolver, ViewChild} from '@angular/core'
 import {ModalComponent} from "./modal/modal.component";
 import {RefDirective} from "./ref.directive";
+import {Meta, Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,25 @@ export class AppComponent {
   // этот декоратор, нужен для доступа к собственной директиве appRef
   @ViewChild(RefDirective, {static: false}) refDir: RefDirective
   // constructor для инъекций в данный компонент
-  constructor(private resolver: ComponentFactoryResolver) {
+  constructor(
+    private resolver: ComponentFactoryResolver,
+    private title: Title,
+    // нужна для работы с тегами
+    private meta: Meta
+  ) {
+    // получаем тот title который у нас в index.html
+    // const t = title.getTitle()
+
+    // мы можем изменять title (если так делаем не в конструкторе, то обращаемся через ключевое слово this)
+    title.setTitle('App Component Page')
+    // соответственно можем добавлять тег, получать тег, удалять теги
+    // в секцию <head> добавятся два тега meta, они будут выглядеть
+    // <meta name="keywords" content="angular,google,appcomponent">
+    // <meta name="description" content="this is app component">
+    this.meta.addTags([
+      {name: 'keywords', content: 'angular,google,appcomponent'},
+      {name: 'description', content: 'this is app component'}
+    ])
   }
 
   showModal() {
