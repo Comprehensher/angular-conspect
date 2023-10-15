@@ -6,5 +6,6 @@ import {Component} from '@angular/core'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor() {}
+  // если данный флаг в значении true, тогда модальное окно показывается
+  modal = false
 }

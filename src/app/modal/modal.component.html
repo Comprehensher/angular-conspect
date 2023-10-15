@@ -1,0 +1,17 @@
+<!--Это будет затемнение, которое появляется при появлении модального окна-->
+<div class="backdrop"></div>
+
+<div class="modal">
+  <nav class="navbar">
+    <h1>{{ title }}</h1>
+  </nav>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, saepe.
+  </p>
+
+  <!-- При клике будем закрывать модальное окно
+       и будем передавать событие отцовскому компоненту, как я понял
+  -->
+  <button class="btn" (click)="close.emit()">Close</button>
+</div>
