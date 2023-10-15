@@ -25,4 +25,15 @@ describe('CounterComponent', () => {
     expect(component.counter).toBe(-1)
   })
 
+  // в этом тесте проверяем значение которое передается на верх, counter-component-ом
+  it('should increment value by event emitter', () => {
+    let result
+    // emitter является Observable, то мы можем подписываться на их значения, занесем значение в result
+    component.counterEmitter.subscribe(v => result = v)
+
+    component.increment()
+
+    expect(result).toBe(1)
+  })
+
 })
