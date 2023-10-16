@@ -1,6 +1,6 @@
 import {PostsComponent} from "./posts.component";
 import {PostsService} from "./posts.service";
-import {EMPTY, of} from "rxjs";
+import {EMPTY, of, throwError} from "rxjs";
 
 describe('PostsComponent', () => {
   let component: PostsComponent
@@ -69,4 +69,26 @@ describe('PostsComponent', () => {
     expect(spy).not.toHaveBeenCalled()
   })
 
+  it('should add new post', () => {
+    const post = {title: 'test'}
+    // of() позволяет создать новый Observable и можно его вернуть
+    const spy = spyOn(service, 'create').and.returnValue(of(post))
+
+    component.add(post.title)
+    // проверим у spy, действительно ли вызывался метод Create
+    expect(spy).toHaveBeenCalled()
+    // попадает ли данный объект post в массив posts
+    expect(component.posts.includes(post)).toBeTruthy()
+  })
+
+  // проверим что если у на была какая-то ошибка, то поле message принимает значение этой ошибки
+  it('should set message to error message', () => {
+    const error = 'Error message'
+    // возвращаем тот Observable который нам генерирует ошибку
+    spyOn(service, 'create').and.returnValue(throwError(error))
+
+    component.add('Post title')
+
+    expect(component.message).toBe(error)
+  })
 })
