@@ -37,4 +37,26 @@ describe('CounterComponent', () => {
     expect(el.textContent).toContain(num.toString())
   })
 
+  it('should add green class if counter is even', () => {
+    component.counter = 6
+
+    fixture.detectChanges()
+    // обращаемся к h1.counter
+    let debugel = fixture.debugElement.query(By.css('.counter'))
+    // как я понял это h1
+    let el: HTMLElement = debugel.nativeElement
+
+    expect(el.classList.contains('green')).toBeTruthy()
+  })
+
+  it('should increment counter if increment button was clicked', () => {
+    // в шаблоне кнопка имеет id=increment, поэтому к ней можно обратиться через #
+    let btn = fixture.debugElement.query(By.css('#increment'))
+    // нам нужно иммитировать нажатие кнопки, triggerEventHandler - тригернет какое-либо событие
+    // в данном случае click
+    btn.triggerEventHandler('click', null)
+
+    expect(component.counter).toBe(1)
+  })
+
 })
