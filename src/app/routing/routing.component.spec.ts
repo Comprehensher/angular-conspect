@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RoutingComponent } from './routing.component';
-import {Observable, Subject} from "rxjs";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import { Subject} from "rxjs";
+import {ActivatedRoute, Params, Router, RouterOutlet} from "@angular/router";
 import {PostsService} from "../posts/posts.service";
+import {By} from "@angular/platform-browser";
+import {RouterTestingModule} from "@angular/router/testing";
 
 // пишем свой моковый роутер, чтобы не подтягивать dependecy реального роутера
 // т.о. мы не будем проверять метод navigate, это делает комманда Angular
@@ -35,6 +37,7 @@ describe('RoutingComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [RoutingComponent],
+      imports: [RouterTestingModule],
       providers: [
         // говорим, что вместо Router хотим использовать свой класс RouterStub
         // другими словами: "Друг, я кидаю тебе роутер, но вместо этого роутера используй мой класс
@@ -70,5 +73,12 @@ describe('RoutingComponent', () => {
     route.push({id: '0'})
 
     expect(spy).toHaveBeenCalledWith(['/404'])
+  })
+
+  // проверим если нужная директива у шаблона html
+  it('should have router-outlet directive', () => {
+    let de = fixture.debugElement.query(By.directive(RouterOutlet))
+
+    expect(de).not.toBeNull()
   })
 });
