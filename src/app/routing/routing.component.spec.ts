@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RoutingComponent } from './routing.component';
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {PostsService} from "../posts/posts.service";
 
@@ -12,7 +12,20 @@ class RouterStub {
 }
 
 class ActivatedRouteStub {
-  params: Observable<Params>
+  // Subject работает как Observable, но позволяет еще эмитить новый события
+  private subject = new Subject<Params
+  >()
+
+  // тут мы просто эммитим эти события
+  push(params: Params) {
+    this.subject.next(params)
+  }
+
+  get params() {
+    // возвращаем тот объект, в котором хранятся текущие значения
+    // но возвращаем как Observable
+    return this.subject.asObservable()
+  }
 }
 
 describe('RoutingComponent', () => {
@@ -32,6 +45,7 @@ describe('RoutingComponent', () => {
     });
     fixture = TestBed.createComponent(RoutingComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should be defined', () => {
@@ -45,5 +59,16 @@ describe('RoutingComponent', () => {
     component.goBack()
     // проверяем просто если spy был вызван, а не проверяем саму навигацию
     expect(spy).toHaveBeenCalledWith(['/posts'])
+  })
+
+  it ('should navigate to 404 if id = 0', () => {
+    // создаем роутер
+    let router = fixture.debugElement.injector.get(Router)
+    let route: ActivatedRouteStub = TestBed.get(ActivatedRoute)
+    let spy = spyOn(router, 'navigate')
+
+    route.push({id: '0'})
+
+    expect(spy).toHaveBeenCalledWith(['/404'])
   })
 });
