@@ -6,17 +6,21 @@ import {CounterComponent} from "./counter/counter.component";
 import {FormsModule} from "@angular/forms";
 import {PostsComponent} from "./posts/posts.component";
 import { RoutingComponent } from './routing/routing.component';
+import {RouterModule} from "@angular/router";
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CounterComponent,
     PostsComponent,
-    RoutingComponent
+    RoutingComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot([])
   ],
   providers: [],
   bootstrap: [AppComponent]

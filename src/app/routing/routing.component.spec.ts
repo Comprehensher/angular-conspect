@@ -6,6 +6,7 @@ import {ActivatedRoute, Params, Router, RouterOutlet} from "@angular/router";
 import {PostsService} from "../posts/posts.service";
 import {By} from "@angular/platform-browser";
 import {RouterTestingModule} from "@angular/router/testing";
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 
 // пишем свой моковый роутер, чтобы не подтягивать dependecy реального роутера
 // т.о. мы не будем проверять метод navigate, это делает комманда Angular
@@ -44,7 +45,9 @@ describe('RoutingComponent', () => {
         {provide: Router, useClass: RouterStub},
         // тоже самое и для ActivatedRoute
         {provide: ActivatedRoute, useClass: ActivatedRouteStub}
-      ]
+      ],
+      // Angular когда будет видеть неизвестный ему компонент, не будет ругаться, будет игнорить
+      schemas: [ NO_ERRORS_SCHEMA]
     });
     fixture = TestBed.createComponent(RoutingComponent);
     component = fixture.componentInstance;
