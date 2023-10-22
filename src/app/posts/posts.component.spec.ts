@@ -1,6 +1,6 @@
 import {PostsComponent} from "./posts.component";
 import {PostsService} from "./posts.service";
-import {ComponentFixture, TestBed, async, waitForAsync} from "@angular/core/testing";
+import {ComponentFixture, TestBed, waitForAsync, fakeAsync, tick} from "@angular/core/testing";
 import {HttpClientModule} from "@angular/common/http";
 import {of} from "rxjs";
 
@@ -38,16 +38,15 @@ describe('PostsComponent', () => {
   })
 
 
-  it('should fetch posts on ngOnInit (promise)', waitForAsync(() => {
+  it('should fetch posts on ngOnInit (promise)', fakeAsync(() => {
     const posts = [1, 2, 3]
     spyOn(service, 'fetchPromise').and.returnValue(Promise.resolve(posts))
-
     fixture.detectChanges()
-    // нужен чтобы подождать пока завершится fettchPromise, и после него запустить expect()
-    fixture.whenStable().then(() => {
-      expect(component.posts.length).toEqual(posts.length)
-      console.log('EXPECT CALLED')
-    })
+
+    // явно указываем что нужно подождать некоторое количество времени
+    tick()
+    
+    expect(component.posts.length).toBe(posts.length)
 
   }))
 
