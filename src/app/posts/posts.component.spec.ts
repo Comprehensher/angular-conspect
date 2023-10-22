@@ -45,7 +45,7 @@ describe('PostsComponent', () => {
 
     // явно указываем что нужно подождать некоторое количество времени
     tick()
-    
+
     expect(component.posts.length).toBe(posts.length)
 
   }))
