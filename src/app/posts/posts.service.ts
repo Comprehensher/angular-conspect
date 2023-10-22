@@ -14,6 +14,11 @@ export class PostsService {
     return this.http.get<any[]>(``)
   }
 
+  fetchPromise(): Promise<any> {
+    // конвертируем observable в promise
+    return this.http.get<any[]>(`url`).toPromise()
+  }
+
   remove(id: number): Observable<any> {
     return this.http.delete<void>(`${id}`)
   }

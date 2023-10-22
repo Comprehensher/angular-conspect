@@ -1,6 +1,6 @@
 import {PostsComponent} from "./posts.component";
 import {PostsService} from "./posts.service";
-import {ComponentFixture, TestBed} from "@angular/core/testing";
+import {ComponentFixture, TestBed, async, waitForAsync} from "@angular/core/testing";
 import {HttpClientModule} from "@angular/common/http";
 import {of} from "rxjs";
 
@@ -27,7 +27,7 @@ describe('PostsComponent', () => {
   })
 
   // мы не будет руками вызывать ngOnInit он должен быть вызван автоматически
-  it('should fetch posts on ngOnInit', () => {
+  xit('should fetch posts on ngOnInit', () => {
     const posts = [1, 2, 3]
     // service возвращает Observable, поэтому мы можем с помощью метода of() создать Observable
     spyOn(service, 'fetch').and.returnValue(of(posts))
@@ -36,5 +36,19 @@ describe('PostsComponent', () => {
 
     expect(component.posts).toEqual(posts)
   })
+
+
+  it('should fetch posts on ngOnInit (promise)', waitForAsync(() => {
+    const posts = [1, 2, 3]
+    spyOn(service, 'fetchPromise').and.returnValue(Promise.resolve(posts))
+
+    fixture.detectChanges()
+    // нужен чтобы подождать пока завершится fettchPromise, и после него запустить expect()
+    fixture.whenStable().then(() => {
+      expect(component.posts.length).toEqual(posts.length)
+      console.log('EXPECT CALLED')
+    })
+
+  }))
 
 })

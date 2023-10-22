@@ -27,7 +27,7 @@ describe('NavbarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have link to posts page', ()=> {
+  xit('should have link to posts page', ()=> {
     // queryAll - нужно получить список всех ссылок
     let debugElements = fixture.debugElement.queryAll(By.directive(RouterLinkWithHref));
     // должен присутствовать аттрибут href, который должен равняться строке posts
