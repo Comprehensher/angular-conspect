@@ -1,6 +1,12 @@
 <form class="card" [formGroup]="form" (ngSubmit)="submit()">
   <h2>Войти в панель администратора</h2>
 
+  <!-- Пропускаем через async пайп какой-то стрим и дальше мы говорим как angular в шаблоне с ним работать
+    с помощью ключевого слова as - т.е значение этоого стрима превратить в локальную переменную error-->
+  <div class="alert alert-danger" *ngIf="auth.error$ | async as error">
+    {{error}}
+  </div>
+
   <div
     class="form-control"
     [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
