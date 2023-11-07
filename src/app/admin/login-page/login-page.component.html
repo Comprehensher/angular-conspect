@@ -7,6 +7,11 @@
     {{error}}
   </div>
 
+  <!-- Показываем если присутствует поле message  -->
+  <div class="alert alert-info" *ngIf="message">
+    {{message}}
+  </div>
+
   <div
     class="form-control"
     [ngClass]="{invalid: form.get('email').touched && form.get('email').invalid}"
